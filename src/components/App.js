@@ -51,7 +51,7 @@ const App = () => {
   const closeModal = () => {
     if (modalState === true) {
       setModal(false);
-      setCurMovie();
+      setCurMovie();  
     }
   };
 
@@ -59,7 +59,7 @@ const App = () => {
     setCurMovie(movie);
   };
 
-  const handleSelect = (e, type) => {
+  const handleSort = (e, type) => {
     let NEW_SORT_URL =
       "https://api.themoviedb.org/3/discover/movie?api_key=63d23804d429b63d14da130f0436dd12&sort_by=";
     NEW_SORT_URL = NEW_SORT_URL + e + type;
@@ -99,7 +99,7 @@ const App = () => {
       </header>
       <Container>
         <Row>
-          {viewType === "list" ? (<Col xs={12}><Search search={search}></Search><Sort handleSelect={handleSelect}/></Col>)
+          {viewType === "list" ? (<Col xs={12}><Search search={search}></Search><Sort handleSort={handleSort}/></Col>)
           : (<Filter handleFilter={handleFilter}></Filter>)}
           <Col>
             <Nav className="justify-content-center" activeKey="/home">
