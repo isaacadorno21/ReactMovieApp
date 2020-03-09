@@ -1,18 +1,12 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import {Row, Col} from 'react-bootstrap';
 import Movie from "./Movie";
-
-const styles = {
-  movieColumn: {
-    marginTop: 20,
-    marginBottom: 20
-  }
-}
 
 const MovieList = ({movies, openModal}) => {
 
   const movieColumns = movies.map(movie => (
-    <Col style={styles.movieColumn} key={movie.id} md={4} lg={3}>
+    <Col className="col-movieColumn" key={movie.id} md={4} lg={3}>
       <Movie movie={movie} openModal={openModal} />
     </Col>
   ))
@@ -22,6 +16,12 @@ const MovieList = ({movies, openModal}) => {
       {movieColumns}
     </Row>
   );
+}
+
+MovieList.propTypes = {
+  movieColumns: PropTypes.string,
+  movies: PropTypes.array,
+  openModal: PropTypes.func 
 }
 
 export default MovieList;

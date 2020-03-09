@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import { PropTypes } from 'prop-types';
 import MovieList from "./MovieList";
 import MovieModal from "./MovieModal";
-import {Container, Row, Col, Dropdown, DropdownButton} from 'react-bootstrap';
 import Search from "./Search";
+import {Container, Row, Col, Dropdown, DropdownButton} from 'react-bootstrap';
 
 const MOVIE_API_URL = "https://api.themoviedb.org/3/discover/movie?api_key=63d23804d429b63d14da130f0436dd12";
 const SEARCH_API_URL = "https://api.themoviedb.org/3/search/movie?api_key=63d23804d429b63d14da130f0436dd12";
@@ -90,5 +91,12 @@ const App = () => {
   </div>
   );
 };
+
+App.propTypes = {
+  searchValue: PropTypes.string,
+  curMovie: PropTypes.object,
+  movie: PropTypes.object,
+  e: PropTypes.string
+}
 
 export default App;
