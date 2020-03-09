@@ -1,4 +1,5 @@
 import React from "react";
+//import missing from "../assets/missing.png";
 
 const Movie = ({ movie, openModal }) => {
   const poster_path = "https://image.tmdb.org/t/p/original"
@@ -9,7 +10,7 @@ const Movie = ({ movie, openModal }) => {
       <div>
         <img
           width="250"
-          alt={`No Poster Available`}
+          alt={"No Poster Available"}
           src={cur_poster}
         />
       </div>

@@ -49,6 +49,10 @@ const App = () => {
     }
   }
 
+  const modalMovieHelper = movie => {
+    setCurMovie(movie);
+  }
+
   const handleSelect = e => {
     let NEW_SORT_URL = "https://api.themoviedb.org/3/discover/movie?api_key=63d23804d429b63d14da130f0436dd12&sort_by=";
     NEW_SORT_URL = NEW_SORT_URL + e + ".desc";
@@ -80,7 +84,7 @@ const App = () => {
       </Row>
       <Row>
         <MovieList movies={movies} openModal={openModal}/>
-        {(modalState === true) ? <MovieModal curMovie={curMovie} closeModal={closeModal} /> : false}
+        {(modalState === true) ? <MovieModal curMovie={curMovie} closeModal={closeModal} modalMovieHelper={modalMovieHelper}/> : false}
       </Row>
     </Container>
   </div>
