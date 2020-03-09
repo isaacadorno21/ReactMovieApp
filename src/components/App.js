@@ -5,13 +5,11 @@ import MovieGallery from "./MovieGallery";
 import MovieList from "./MovieList";
 import MovieModal from "./MovieModal";
 import Search from "./Search";
-
+import Sort from "./Sort";
 import {
   Container,
   Row,
   Col,
-  Dropdown,
-  DropdownButton,
   Nav
 } from "react-bootstrap";
 
@@ -99,70 +97,21 @@ const App = () => {
               <Search search={search}></Search>
             </Col>
           ) : (
-              <Col>
-                <DropdownButton id="dropdown-basic-button" title="Sort Movies">
-                  <Dropdown.Item
-                    onClick={() => {
-                      handleSelect("popularity", ".desc");
-                    }}
-                  >
-                    Popularity (Descending)
-                </Dropdown.Item>
-                  <Dropdown.Item
-                    onClick={() => {
-                      handleSelect("revenue", ".desc");
-                    }}
-                  >
-                    Revenue (Descending)
-                </Dropdown.Item>
-                  <Dropdown.Item
-                    onClick={() => {
-                      handleSelect("vote_average", ".desc");
-                    }}
-                  >
-                    Rating (Descending)
-                </Dropdown.Item>
-                  <Dropdown.Item
-                    onClick={() => {
-                      handleSelect("popularity", ".asc");
-                    }}
-                  >
-                    Popularity (Ascending)
-                </Dropdown.Item>
-                  <Dropdown.Item
-                    onClick={() => {
-                      handleSelect("revenue", ".asc");
-                    }}
-                  >
-                    Revenue (Ascending)
-                </Dropdown.Item>
-                  <Dropdown.Item
-                    onClick={() => {
-                      handleSelect("vote_average", ".asc");
-                    }}
-                  >
-                    Rating (Ascending)
-                </Dropdown.Item>
-                </DropdownButton>
-              </Col>
+            <Sort handleSelect={handleSelect}/>
             )}
           <Col>
             <Nav className="justify-content-center" activeKey="/home">
               <Nav.Item>
-                <Nav.Link
-                  onClick={() => {
+                <Nav.Link onClick={() => {
                     manageViewType("gallery");
-                  }}
-                >
+                  }}>
                   Gallery
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link
-                  onClick={() => {
+                <Nav.Link onClick={() => {
                     manageViewType("list");
-                  }}
-                >
+                  }}>
                   List
                 </Nav.Link>
               </Nav.Item>
@@ -170,20 +119,10 @@ const App = () => {
           </Col>
         </Row>
         <Row>
-          {viewType === "list" ? (
-            <MovieList movies={movies} openModal={openModal} />
-          ) : (
-              <MovieGallery movies={movies} openModal={openModal} />
-            )}
-          {modalState === true ? (
-            <MovieModal
-              curMovie={curMovie}
-              closeModal={closeModal}
-              modalMovieHelper={modalMovieHelper}
-            />
-          ) : (
-              false
-            )}
+          {viewType === "list" ? (<MovieList movies={movies} openModal={openModal} />)
+          : (<MovieGallery movies={movies} openModal={openModal} />)}
+          {modalState === true ? (<MovieModal curMovie={curMovie} closeModal={closeModal} modalMovieHelper={modalMovieHelper} />)
+          : (false)}
         </Row>
       </Container>
     </div>
