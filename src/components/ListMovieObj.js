@@ -16,4 +16,11 @@ const ListMovieObj = ({movie, openModal}) => {
   );
 };
 
+ListMovieObj.propTypes = {
+  poster_path: PropTypes.string,
+  cur_poster: PropTypes.string,
+  movie: PropTypes.object,
+  openModal: PropTypes.func
+};
+
 export default ListMovieObj;

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { PropTypes } from "prop-types";
 
 const Search = props => {
   const [searchValue, setSearchValue] = useState("");
@@ -27,6 +28,10 @@ const Search = props => {
       <input onClick={callSearchFunction} type="submit" value="SEARCH" />
     </form>
   );
+};
+
+Search.propTypes = {
+  props: PropTypes.array
 };
 
 export default Search;

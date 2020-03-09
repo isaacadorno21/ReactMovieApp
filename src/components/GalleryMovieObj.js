@@ -1,6 +1,5 @@
 import React from "react";
 import { PropTypes } from "prop-types";
-//import missing from "../assets/missing.png";
 
 const GalleryMovieObj = ({ movie, openModal }) => {
   const poster_path = "https://image.tmdb.org/t/p/original";

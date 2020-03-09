@@ -131,7 +131,10 @@ App.propTypes = {
   searchValue: PropTypes.string,
   curMovie: PropTypes.object,
   movie: PropTypes.object,
-  e: PropTypes.string
+  e: PropTypes.string,
+  type: PropTypes.string,
+  genre: PropTypes.number,
+  view: PropTypes.string
 };
 
 export default App;

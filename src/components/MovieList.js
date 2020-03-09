@@ -1,6 +1,5 @@
 import React from "react";
-//import { PropTypes } from "prop-types";
-//import { Media } from "react-bootstrap";
+import { PropTypes } from "prop-types";
 import { Row, Col } from "react-bootstrap";
 import ListMovieObj from "./ListMovieObj";
 
@@ -13,5 +12,11 @@ const MovieList = ({movies, openModal}) => {
 
   return <Col>{movieRows}</Col>;
 }
+
+MovieList.propTypes = {
+  movieRows: PropTypes.array,
+  movies: PropTypes.object,
+  openModal: PropTypes.func
+};
 
 export default MovieList;

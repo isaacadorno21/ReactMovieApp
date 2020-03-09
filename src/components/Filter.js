@@ -1,4 +1,5 @@
 import React from "react";
+import { PropTypes } from "prop-types";
 import {Dropdown,DropdownButton, Col} from "react-bootstrap";
 
 const Filter = ({handleFilter}) => {
@@ -162,6 +163,29 @@ const Filter = ({handleFilter}) => {
       </DropdownButton>
     </Col>
   );
+};
+
+Filter.propTypes = {
+  handleFilter: PropTypes.func,
+  action : PropTypes.number,
+  adventure : PropTypes.number,
+  animation : PropTypes.number,
+  comedy : PropTypes.number,
+  crime : PropTypes.number,
+  documentary : PropTypes.number,
+  drama : PropTypes.number,
+  family : PropTypes.number,
+  fantasy : PropTypes.number,
+  history : PropTypes.number,
+  horror : PropTypes.number,
+  music : PropTypes.number,
+  mystery : PropTypes.number,
+  romance : PropTypes.number,
+  scifi : PropTypes.number,
+  tv : PropTypes.number,
+  thriller : PropTypes.number,
+  war : PropTypes.number,
+  western : PropTypes.number
 };
 
 export default Filter;

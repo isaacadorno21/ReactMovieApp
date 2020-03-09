@@ -1,4 +1,5 @@
 import React from "react";
+import { PropTypes } from "prop-types";
 import {Dropdown,DropdownButton, Col} from "react-bootstrap";
 
 const Sort = ({handleSort}) => {
@@ -51,5 +52,9 @@ const Sort = ({handleSort}) => {
     </Col>
   );
 };
+
+Sort.propTypes = {
+  handleSort: PropTypes.func
+}
 
 export default Sort;
