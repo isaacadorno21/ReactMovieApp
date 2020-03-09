@@ -6,12 +6,8 @@ import MovieList from "./MovieList";
 import MovieModal from "./MovieModal";
 import Search from "./Search";
 import Sort from "./Sort";
-import {
-  Container,
-  Row,
-  Col,
-  Nav
-} from "react-bootstrap";
+import Filter from "./Filter";
+import { Container, Row, Col, Nav} from "react-bootstrap";
 
 const MOVIE_API_URL =
   "https://api.themoviedb.org/3/discover/movie?api_key=63d23804d429b63d14da130f0436dd12";
@@ -75,6 +71,17 @@ const App = () => {
     fetchData();
   };
 
+  const handleFilter = genre => {
+    let NEW_FILTER_URL = "https://api.themoviedb.org/3/discover/movie?api_key=63d23804d429b63d14da130f0436dd12&sort_by=popularity.desc&with_genres=";
+    NEW_FILTER_URL = NEW_FILTER_URL + genre;
+
+    async function fetchData() {
+      const result = await axios(NEW_FILTER_URL);
+      setMovies(result.data.results);
+    }
+    fetchData();
+  };
+
   const manageViewType = view => {
     if (view === "list") {
       setViewType("list");
@@ -92,26 +99,17 @@ const App = () => {
       </header>
       <Container>
         <Row>
-          {viewType === "list" ? (
-            <Col xs={5}>
-              <Search search={search}></Search>
-            </Col>
-          ) : (
-            <Sort handleSelect={handleSelect}/>
-            )}
+          {viewType === "list" ? (<Col xs={12}><Search search={search}></Search><Sort handleSelect={handleSelect}/></Col>)
+          : (<Filter handleFilter={handleFilter}></Filter>)}
           <Col>
             <Nav className="justify-content-center" activeKey="/home">
               <Nav.Item>
-                <Nav.Link onClick={() => {
-                    manageViewType("gallery");
-                  }}>
+                <Nav.Link onClick={() => {manageViewType("gallery");}}>
                   Gallery
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link onClick={() => {
-                    manageViewType("list");
-                  }}>
+                <Nav.Link onClick={() => {manageViewType("list");}}>
                   List
                 </Nav.Link>
               </Nav.Item>
