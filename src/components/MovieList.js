@@ -1,35 +1,17 @@
 import React from "react";
 //import { PropTypes } from "prop-types";
-import { Media } from "react-bootstrap";
-//import Movie from "./Movie";
+//import { Media } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
+import ListMovieObj from "./ListMovieObj";
 
-const MovieList = () => {
+const MovieList = ({movies, openModal}) => {
+  const movieRows = movies.map(movie => (
+    <Row className="movieRowList" key={movie.id}>
+      <ListMovieObj movie={movie} openModal={openModal}/>
+    </Row>
+  ));
 
-return (
-    <Media>
-    <img
-      width={64}
-      height={64}
-      className="align-self-start mr-3"
-      src="holder.js/64x64"
-      alt="Generic placeholder"
-    />
-    <Media.Body>
-      <h5>Media Heading</h5>
-      <p>
-        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
-        ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at,
-        tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-        fringilla. Donec lacinia congue felis in faucibus.
-      </p>
-
-      <p>
-        Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu
-        leo. Cum sociis natoque penatibus et magnis dis parturient montes,
-        nascetur ridiculus mus.
-      </p>
-    </Media.Body>
-  </Media>);
+  return <Col>{movieRows}</Col>;
 }
 
 export default MovieList;

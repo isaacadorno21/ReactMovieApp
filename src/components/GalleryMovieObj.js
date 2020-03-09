@@ -2,7 +2,7 @@ import React from "react";
 import { PropTypes } from "prop-types";
 //import missing from "../assets/missing.png";
 
-const Movie = ({ movie, openModal }) => {
+const GalleryMovieObj = ({ movie, openModal }) => {
   const poster_path = "https://image.tmdb.org/t/p/original";
   const cur_poster = poster_path.concat(movie.poster_path);
   return (
@@ -21,11 +21,11 @@ const Movie = ({ movie, openModal }) => {
   );
 };
 
-Movie.propTypes = {
+GalleryMovieObj.propTypes = {
   poster_path: PropTypes.string,
   cur_poster: PropTypes.string,
   movie: PropTypes.object,
   openModal: PropTypes.func
 };
 
-export default Movie;
+export default GalleryMovieObj;

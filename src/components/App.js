@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { PropTypes } from "prop-types";
 import MovieGallery from "./MovieGallery";
+import MovieList from "./MovieList";
 import MovieModal from "./MovieModal";
 import Search from "./Search";
-import ListView from "./MovieList";
+
 import {
   Container,
   Row,
@@ -64,10 +65,10 @@ const App = () => {
     setCurMovie(movie);
   };
 
-  const handleSelect = e => {
+  const handleSelect = (e, type) => {
     let NEW_SORT_URL =
       "https://api.themoviedb.org/3/discover/movie?api_key=63d23804d429b63d14da130f0436dd12&sort_by=";
-    NEW_SORT_URL = NEW_SORT_URL + e + ".desc";
+    NEW_SORT_URL = NEW_SORT_URL + e + type;
 
     async function fetchData() {
       const result = await axios(NEW_SORT_URL);
@@ -93,34 +94,58 @@ const App = () => {
       </header>
       <Container>
         <Row>
-          <Col xs={5}>
-            <Search search={search}></Search>
-          </Col>
-          <Col>
-            <DropdownButton id="dropdown-basic-button" title="Sort Movies">
-              <Dropdown.Item
-                onClick={() => {
-                  handleSelect("popularity");
-                }}
-              >
-                Popularity
-              </Dropdown.Item>
-              <Dropdown.Item
-                onClick={() => {
-                  handleSelect("revenue");
-                }}
-              >
-                Revenue
-              </Dropdown.Item>
-              <Dropdown.Item
-                onClick={() => {
-                  handleSelect("vote_average");
-                }}
-              >
-                Rating
-              </Dropdown.Item>
-            </DropdownButton>
-          </Col>
+          {viewType === "list" ? (
+            <Col xs={5}>
+              <Search search={search}></Search>
+            </Col>
+          ) : (
+              <Col>
+                <DropdownButton id="dropdown-basic-button" title="Sort Movies">
+                  <Dropdown.Item
+                    onClick={() => {
+                      handleSelect("popularity", ".desc");
+                    }}
+                  >
+                    Popularity (Descending)
+                </Dropdown.Item>
+                  <Dropdown.Item
+                    onClick={() => {
+                      handleSelect("revenue", ".desc");
+                    }}
+                  >
+                    Revenue (Descending)
+                </Dropdown.Item>
+                  <Dropdown.Item
+                    onClick={() => {
+                      handleSelect("vote_average", ".desc");
+                    }}
+                  >
+                    Rating (Descending)
+                </Dropdown.Item>
+                  <Dropdown.Item
+                    onClick={() => {
+                      handleSelect("popularity", ".asc");
+                    }}
+                  >
+                    Popularity (Ascending)
+                </Dropdown.Item>
+                  <Dropdown.Item
+                    onClick={() => {
+                      handleSelect("revenue", ".asc");
+                    }}
+                  >
+                    Revenue (Ascending)
+                </Dropdown.Item>
+                  <Dropdown.Item
+                    onClick={() => {
+                      handleSelect("vote_average", ".asc");
+                    }}
+                  >
+                    Rating (Ascending)
+                </Dropdown.Item>
+                </DropdownButton>
+              </Col>
+            )}
           <Col>
             <Nav className="justify-content-center" activeKey="/home">
               <Nav.Item>
@@ -146,10 +171,10 @@ const App = () => {
         </Row>
         <Row>
           {viewType === "list" ? (
-            <ListView />
+            <MovieList movies={movies} openModal={openModal} />
           ) : (
-            <MovieGallery movies={movies} openModal={openModal} />
-          )}
+              <MovieGallery movies={movies} openModal={openModal} />
+            )}
           {modalState === true ? (
             <MovieModal
               curMovie={curMovie}
@@ -157,8 +182,8 @@ const App = () => {
               modalMovieHelper={modalMovieHelper}
             />
           ) : (
-            false
-          )}
+              false
+            )}
         </Row>
       </Container>
     </div>
