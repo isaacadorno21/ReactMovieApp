@@ -15,7 +15,7 @@ const MovieList = ({movies, openModal}) => {
 
 MovieList.propTypes = {
   movieRows: PropTypes.array,
-  movies: PropTypes.object,
+  movies: PropTypes.array,
   openModal: PropTypes.func
 };
 

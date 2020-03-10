@@ -66,6 +66,7 @@ const App = () => {
 
     async function fetchData() {
       const result = await axios(NEW_SORT_URL);
+      console.log(result.data.results);
       setMovies(result.data.results);
     }
     fetchData();
@@ -131,6 +132,7 @@ App.propTypes = {
   searchValue: PropTypes.string,
   curMovie: PropTypes.object,
   movie: PropTypes.object,
+  movies: PropTypes.array,
   e: PropTypes.string,
   type: PropTypes.string,
   genre: PropTypes.number,
