@@ -12,15 +12,9 @@ const MovieModal = ({ curMovie, closeModal, modalMovieHelper }) => {
       <Col>
         <h2>{curMovie.title}</h2>
         <Row>
-          <a
-            href="/#"
-            className="prev"
-            onClick={() => {
-              changeMovie(curMovie, -1, modalMovieHelper);
-            }}
-          >
-            &#10094;
-          </a>
+          <Button size="sm" variant="outline-primary" onClick={() => {changeMovie(curMovie, -1, modalMovieHelper);}}>
+          Previous Movie
+          </Button>
 
           <img
             className="center"
@@ -29,15 +23,9 @@ const MovieModal = ({ curMovie, closeModal, modalMovieHelper }) => {
             src={cur_poster}
           />
 
-          <a
-            href="/#"
-            className="next"
-            onClick={() => {
-              changeMovie(curMovie, 1, modalMovieHelper);
-            }}
-          >
-            &#10095;
-          </a>
+          <Button size="sm" variant="outline-primary" onClick={() => {changeMovie(curMovie, 1, modalMovieHelper);}}>
+          Next Movie
+          </Button>
         </Row>
         <h4>Overview:</h4> {curMovie.overview}
         <p></p>
